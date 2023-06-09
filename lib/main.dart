@@ -1,4 +1,7 @@
 import 'package:abc_mobile/bindings/global_binding.dart';
+import 'package:abc_mobile/routes.dart';
+import 'package:abc_mobile/screens/Auth/login.dart';
+import 'package:abc_mobile/screens/navmenu/menu_dashboard_layout.dart';
 import 'package:abc_mobile/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +25,10 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const SplashScreen(),
+      getPages: [
+        GetPage(name: Routes.login, page: () => const LoginScreen()),
+        GetPage(name: Routes.dashboard, page: () => MenuDashboardLayout())
+      ],
     );
   }
 }
