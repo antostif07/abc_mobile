@@ -66,12 +66,12 @@ class OnBoardingController extends GetxController {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Image.asset('assets/images/logo.png', width: 210,),
-                  const Text(
+                  Text(
                     "Réjoignez-nous maintenant!",
                     textAlign: TextAlign.center,
-                    style: TextStyle(
+                    style: GoogleFonts.poppins(
                         fontSize: 14,
-                        color: Color(0xFFFFFFFF)),
+                        color: const Color(0xFFFFFFFF)),
                   ),
                 ],
               )
@@ -80,16 +80,15 @@ class OnBoardingController extends GetxController {
             padding: const EdgeInsets.only(top: 80, bottom: 10),
             child: CupertinoButton(
                 color: const Color(0xFFFFFFFF),
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
                       "Se connecter ➡",
-                      style: TextStyle(
-                          fontFamily: 'Red Hat Display',
+                      style: GoogleFonts.poppins(
                           fontSize: 16,
-                          color: Color(0xFF0083BE),
+                          color: const Color(0xFF0083BE),
                           fontWeight: FontWeight.bold),
                     ),
                   ],
@@ -101,14 +100,13 @@ class OnBoardingController extends GetxController {
           Padding(
             padding: const EdgeInsets.only(bottom: 80),
             child: TextButton(
-                child: const Row(
+                child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
                       "S'Enregistrer",
-                      style: TextStyle(
-                          fontFamily: 'Red Hat Display',
+                      style: GoogleFonts.poppins(
                           fontSize: 16,
                           color: Colors.white,
                           fontWeight: FontWeight.bold),

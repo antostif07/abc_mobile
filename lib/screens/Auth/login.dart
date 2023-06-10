@@ -93,7 +93,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                               height: 10,
                             ),
                             Text(
-                              "Password",
+                              "Mot de passe",
                               style: GoogleFonts.poppins(
                                 fontSize: 18,
                                 color: HexColor("#8d8d8d"),
@@ -115,7 +115,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                               onPressed: (){
                                 Get.offAllNamed('/dashboard');
                               },
-                              buttonText: 'Submit',
+                              buttonText: 'Se connecter',
                             ),
                             const SizedBox(
                               height: 12,

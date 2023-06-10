@@ -1,7 +1,7 @@
 import '../../../theme/config.dart' as config;
 import 'package:flutter/material.dart';
 
-import '../home.dart';
+import '../Home/home.dart';
 import 'dashboard.dart';
 import 'menu.dart';
 
