@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../widgets/textfield.dart';
 
@@ -29,7 +30,7 @@ class LoginScreen extends GetView<AuthenticationController> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: 535,
+                height: 500,
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -46,7 +47,6 @@ class LoginScreen extends GetView<AuthenticationController> {
                       Text(
                         "Se connecter",
                         style: GoogleFonts.poppins(
-                          fontSize: 40,
                           fontWeight: FontWeight.bold,
                           color: HexColor("#4f4f4f"),
                         ),
@@ -60,24 +60,38 @@ class LoginScreen extends GetView<AuthenticationController> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Email",
+                              "Numéro de téléphone",
                               style: GoogleFonts.poppins(
-                                fontSize: 18,
                                 color: HexColor("#8d8d8d"),
                               ),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 5,
                             ),
-                            AbcTextField(
-                              onChanged: (() {
-                                controller.validateEmail(controller.emailController.text);
-                              }),
-                              controller: controller.emailController,
-                              hintText: "hello@gmail.com",
-                              obscureText: false,
-                              prefixIcon: const Icon(Icons.mail_outline),
+                            InternationalPhoneNumberInput(
+                              onInputChanged: (PhoneNumber number) {
+                                print(number.phoneNumber);
+                              },
+                              onInputValidated: (bool value) {
+                                print(value);
+                              },
+                              selectorConfig: const SelectorConfig(
+                                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                                showFlags: true,
+                              ),
+                              textFieldController: controller.telController,
+                              formatInput: true,
+                                keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true)
                             ),
+                            // AbcTextField(
+                            //   onChanged: (() {
+                            //     controller.validateEmail(controller.emailController.text);
+                            //   }),
+                            //   controller: controller.emailController,
+                            //   hintText: "hello@gmail.com",
+                            //   obscureText: false,
+                            //   prefixIcon: const Icon(Icons.mail_outline),
+                            // ),
                             Padding(
                               padding:
                               const EdgeInsets.fromLTRB(8, 0, 0, 0),
@@ -95,7 +109,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                             Text(
                               "Mot de passe",
                               style: GoogleFonts.poppins(
-                                fontSize: 18,
+                                fontSize: 14,
                                 color: HexColor("#8d8d8d"),
                               ),
                             ),
@@ -121,19 +135,21 @@ class LoginScreen extends GetView<AuthenticationController> {
                               height: 12,
                             ),
                             Padding(
-                              padding: const EdgeInsets.fromLTRB(35, 0, 0, 0),
-                              child: Row(
+                              padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
-                                  Text("Créer un nouveau compte?",
+                                  Text("Vous n'avez pas de compte?",
+                                      textAlign: TextAlign.center,
                                       style: GoogleFonts.poppins(
-                                        fontSize: 15,
                                         color: HexColor("#8d8d8d"),
                                       )),
                                   TextButton(
                                       child: Text(
                                         "S'inscrire",
                                         style: GoogleFonts.poppins(
-                                          fontSize: 15,
+                                          fontSize: 14,
                                           color: HexColor("#44564a"),
                                         ),
                                       ),

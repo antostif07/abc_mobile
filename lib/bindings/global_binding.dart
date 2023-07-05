@@ -8,5 +8,4 @@ class GlobalBinding extends Bindings {
     Get.put(OnBoardingController());
     Get.lazyPut(() => AuthenticationController());
   }
-
 }

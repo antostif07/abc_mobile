@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class AuthenticationController extends GetxController {
-  final TextEditingController emailController = TextEditingController();
+  final TextEditingController telController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final errorMessage = "".obs;
 
@@ -17,13 +17,13 @@ class AuthenticationController extends GetxController {
   //       });
   // }
 
-  void validateEmail(String val) {
-    if (val.isEmpty) {
-      errorMessage.value = "Veuillez renseigner votre adresse email";
-    } else if (!EmailValidator.validate(val, true)) {
-      errorMessage.value = "Adresse email invalide";
-    } else {
-      errorMessage.value = "";
-    }
-  }
+  // void validateEmail(String val) {
+  //   if (val.isEmpty) {
+  //     errorMessage.value = "Veuillez renseigner votre adresse email";
+  //   } else if (!EmailValidator.validate(val, true)) {
+  //     errorMessage.value = "Adresse email invalide";
+  //   } else {
+  //     errorMessage.value = "";
+  //   }
+  // }
 }
