@@ -69,12 +69,26 @@ class LoginScreen extends GetView<AuthenticationController> {
                               height: 5,
                             ),
                             InternationalPhoneNumberInput(
-                              onInputChanged: (PhoneNumber number) {
-                                print(number.phoneNumber);
-                              },
+                                onInputChanged: (PhoneNumber number) {
+                                  print(number.phoneNumber);
+                                  },
+                                inputDecoration: InputDecoration(
+                              fillColor: HexColor("#f0f3f1"),
+                              contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              hintStyle: GoogleFonts.poppins(
+                                fontSize: 15,
+                                color: HexColor("#8d8d8d"),
+                              ),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.circular(30),
+                                borderSide: BorderSide.none,
+                              ),
+                              filled: true,
+                            ),
                               onInputValidated: (bool value) {
                                 print(value);
                               },
+                                countries: const ['CD'],
                               selectorConfig: const SelectorConfig(
                                 selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                                 showFlags: true,
@@ -83,15 +97,6 @@ class LoginScreen extends GetView<AuthenticationController> {
                               formatInput: true,
                                 keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true)
                             ),
-                            // AbcTextField(
-                            //   onChanged: (() {
-                            //     controller.validateEmail(controller.emailController.text);
-                            //   }),
-                            //   controller: controller.emailController,
-                            //   hintText: "hello@gmail.com",
-                            //   obscureText: false,
-                            //   prefixIcon: const Icon(Icons.mail_outline),
-                            // ),
                             Padding(
                               padding:
                               const EdgeInsets.fromLTRB(8, 0, 0, 0),
@@ -136,28 +141,30 @@ class LoginScreen extends GetView<AuthenticationController> {
                             ),
                             Padding(
                               padding: const EdgeInsets.fromLTRB(0, 10, 0, 0),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  Text("Vous n'avez pas de compte?",
-                                      textAlign: TextAlign.center,
-                                      style: GoogleFonts.poppins(
-                                        color: HexColor("#8d8d8d"),
-                                      )),
-                                  TextButton(
-                                      child: Text(
-                                        "S'inscrire",
+                              child: Center(
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text("Vous n'avez pas de compte?",
+                                        textAlign: TextAlign.center,
                                         style: GoogleFonts.poppins(
-                                          fontSize: 14,
-                                          color: HexColor("#44564a"),
+                                          color: HexColor("#8d8d8d"),
+                                        )),
+                                    TextButton(
+                                        child: Text(
+                                          "S'inscrire",
+                                          style: GoogleFonts.poppins(
+                                            fontSize: 14,
+                                            color: HexColor("#44564a"),
+                                          ),
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        // go to register page
-                                      }
-                                  ),
-                                ],
+                                        onPressed: () {
+                                          // go to register page
+                                        }
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ],
