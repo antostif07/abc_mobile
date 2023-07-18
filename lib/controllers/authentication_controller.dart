@@ -1,29 +1,54 @@
-import 'package:email_validator/email_validator.dart';
+import 'package:abc_mobile/utils/cache_manager.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
-class AuthenticationController extends GetxController {
+import '../Api/user_provider.dart';
+import '../routes.dart';
+
+class AuthenticationController extends GetxController with CacheManager {
+  AuthenticationController({required this.userProvider});
+
+  final UserProvider userProvider;
   final TextEditingController telController = TextEditingController();
+  final phoneInputText = ''.obs;
   final TextEditingController passwordController = TextEditingController();
   final errorMessage = "".obs;
+  final isLoading = false.obs;
 
-  // void showErrorMessage(String message) {
-  //   showDialog(
-  //       context: context,
-  //       builder: (context) {
-  //         return AlertDialog(
-  //           title: Text(message),
-  //         );
-  //       });
-  // }
+  Future<void> login(body) async {
+    try {
+      isLoading(true);
+      await userProvider.login(body).then((response) {
+        if (response.statusCode == 200) {
+          try {
+            userProvider.getCurrentUser(response.body?.token).then((value) {
+              if (value.statusCode == 200) {
+                print('success');
+                saveToken(response.body?.token);
+                saveConnectedUser(value.body);
+                setIsLogged(true);
+                Get.offAllNamed(Routes.dashboard);
+              }
+            });
+          } finally {
 
-  // void validateEmail(String val) {
-  //   if (val.isEmpty) {
-  //     errorMessage.value = "Veuillez renseigner votre adresse email";
-  //   } else if (!EmailValidator.validate(val, true)) {
-  //     errorMessage.value = "Adresse email invalide";
-  //   } else {
-  //     errorMessage.value = "";
-  //   }
-  // }
+          }
+
+        } else {
+          return null;
+        }
+      });
+    } finally {
+      isLoading(false);
+    }
+  }
+
+  Future<void> checkLoginStatus() async {
+    final token = getToken();
+    if (token != null) {
+      await setIsLogged(true);
+    } else {
+      await setIsLogged(false);
+    }
+  }
 }

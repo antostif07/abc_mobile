@@ -105,13 +105,9 @@ class VideosPage extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 0,
-            child: TopBar(
-              controller: controller,
-              expanded: false,
-              onMenuTap: onMenuTap,
-            ),
+            child: TopBar(),
           )
         ],
       ),

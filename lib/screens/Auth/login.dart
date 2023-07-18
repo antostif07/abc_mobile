@@ -23,7 +23,7 @@ class LoginScreen extends GetView<AuthenticationController> {
             Positioned(
               left: 0, top: -15,
               child: Image.asset(
-                'assets/Images/plants.png',
+                'assets/images/plants.png',
                 scale: 1.5,
               ),
             ),
@@ -70,7 +70,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                             ),
                             InternationalPhoneNumberInput(
                                 onInputChanged: (PhoneNumber number) {
-                                  print(number.phoneNumber);
+                                  controller.phoneInputText.value = number.phoneNumber!;
                                   },
                                 inputDecoration: InputDecoration(
                               fillColor: HexColor("#f0f3f1"),
@@ -130,12 +130,15 @@ class LoginScreen extends GetView<AuthenticationController> {
                             const SizedBox(
                               height: 20,
                             ),
-                            ButtonWidget(
+                            Obx(() => ButtonWidget(
                               onPressed: (){
-                                Get.offAllNamed('/dashboard');
+                                controller.login({
+                                  "phone": controller.phoneInputText.value,
+                                  "password": controller.passwordController.text,
+                                });
                               },
-                              buttonText: 'Se connecter',
-                            ),
+                              buttonText: controller.isLoading.value ? 'loading' : 'Se connecter' ,
+                            ),),
                             const SizedBox(
                               height: 12,
                             ),

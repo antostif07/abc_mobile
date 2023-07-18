@@ -22,7 +22,11 @@ class ButtonWidget extends StatelessWidget {
             color: HexColor('#44564a'),
             borderRadius: BorderRadius.circular(30),
           ),
-          child: Text(
+          child: buttonText == 'loading' ? const Center(
+            child: CircularProgressIndicator(
+              color: Colors.white,
+            ),
+          ) : Text(
             buttonText,
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(

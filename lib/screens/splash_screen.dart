@@ -1,9 +1,12 @@
+import 'package:abc_mobile/controllers/authentication_controller.dart';
+import 'package:abc_mobile/screens/navmenu/menu_dashboard_layout.dart';
 import 'package:abc_mobile/widgets/blue_wave_background.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'OnBoard/on_boarding.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends GetView<AuthenticationController> {
   const SplashScreen({super.key});
 
   Future<void> initializeSettings() async {
@@ -24,7 +27,7 @@ class SplashScreen extends StatelessWidget {
           if(snapshot.hasError) {
             return errorView(snapshot);
           } else {
-            return const OnBoarding();
+            return controller.isLogged() ? MenuDashboardLayout() : const OnBoarding();
           }
         }
       },

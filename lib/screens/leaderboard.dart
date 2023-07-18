@@ -330,11 +330,7 @@ class _LeaderboardPageState extends State<LeaderboardPage> {
               children: <Widget>[
                 Column(
                   children: <Widget>[
-                    TopBar(
-                      controller: controller,
-                      expanded: false,
-                      onMenuTap: widget.onMenuTap,
-                    ),
+                    const TopBar(),
                     Container(
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.07,

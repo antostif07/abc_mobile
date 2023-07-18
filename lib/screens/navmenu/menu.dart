@@ -1,8 +1,10 @@
+import 'package:abc_mobile/utils/cache_manager.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../../theme/box_icons_icons.dart';
 
-class Menu extends StatelessWidget {
+class Menu extends StatelessWidget with CacheManager {
   final Animation<Offset>? slideAnimation;
   final Animation<double>? menuAnimation;
   final int? selectedIndex;
@@ -28,7 +30,7 @@ class Menu extends StatelessWidget {
             width: MediaQuery.of(context).size.width * 0.33,
             height: MediaQuery.of(context).size.height * 0.67,
             decoration: BoxDecoration(
-              color: Color(0x80FFFFFF),
+              color: const Color(0x80FFFFFF),
               borderRadius: BorderRadius.circular(10),
             ),
           ),
@@ -38,7 +40,7 @@ class Menu extends StatelessWidget {
           child: Container(
             width: MediaQuery.of(context).size.width,
             height: 135,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                   image: AssetImage("assets/images/navwave.png"),
                   fit: BoxFit.fitWidth),
@@ -50,7 +52,7 @@ class Menu extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.fromLTRB(0, 28, 10, 0),
               child: IconButton(
-                icon: Icon(
+                icon: const Icon(
                   Icons.close,
                   color: Colors.white,
                 ),
@@ -72,8 +74,8 @@ class Menu extends StatelessWidget {
                   children: <Widget>[
                     Row(
                       children: <Widget>[
-                        CircleAvatar(
-                          radius: 30,
+                        const CircleAvatar(
+                          radius: 40,
                           backgroundImage: AssetImage('assets/images/user.png'),
                         ),
                         Padding(
@@ -83,11 +85,10 @@ class Menu extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                "David Kalunga",
+                                getConnectedUser().name,
                                 maxLines: 1,
                                 overflow: TextOverflow.fade,
-                                style: TextStyle(
-                                  fontFamily: "Red Hat Display",
+                                style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w600,
                                   fontSize: 20,
@@ -97,8 +98,7 @@ class Menu extends StatelessWidget {
                                 "Etudiant",
                                 maxLines: 1,
                                 overflow: TextOverflow.fade,
-                                style: TextStyle(
-                                  fontFamily: "Red Hat Display",
+                                style: GoogleFonts.poppins(
                                   color: Colors.white,
                                   fontWeight: FontWeight.w400,
                                   fontSize: 12,
@@ -109,13 +109,13 @@ class Menu extends StatelessWidget {
                         )
                       ],
                     ),
-                    Spacer(
+                    const Spacer(
                       flex: 2,
                     ),
                     Row(
                       children: <Widget>[
-                        Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
+                        const Padding(
+                          padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_home_circle,
                             color: Colors.white,
@@ -125,8 +125,7 @@ class Menu extends StatelessWidget {
                           "Accueil",
                           maxLines: 1,
                           overflow: TextOverflow.fade,
-                          style: TextStyle(
-                            fontFamily: "Red Hat Display",
+                          style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontSize: 18,
@@ -134,11 +133,11 @@ class Menu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(flex: 1),
-                    Row(
+                    const Spacer(flex: 1),
+                    const Row(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
+                          padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_book_alt,
                             color: Colors.white,
@@ -157,7 +156,7 @@ class Menu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(flex: 1),
+                    const Spacer(flex: 1),
                     SizedBox(
                       height: 1,
                       width: 200,
@@ -165,11 +164,11 @@ class Menu extends StatelessWidget {
                         color: Colors.white54,
                       ),
                     ),
-                    Spacer(flex: 1),
-                    Row(
+                    const Spacer(flex: 1),
+                    const Row(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
+                          padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_cog,
                             color: Colors.white,
@@ -188,11 +187,11 @@ class Menu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(flex: 1),
-                    Row(
+                    const Spacer(flex: 1),
+                    const Row(
                       children: <Widget>[
                         Padding(
-                          padding: const EdgeInsets.only(right: 20.0),
+                          padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_help_circle,
                             color: Colors.white,
@@ -211,7 +210,7 @@ class Menu extends StatelessWidget {
                         ),
                       ],
                     ),
-                    Spacer(flex: 6),
+                    const Spacer(flex: 6),
                   ],
                 ),
               ),

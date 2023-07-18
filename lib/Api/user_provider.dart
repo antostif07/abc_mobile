@@ -5,21 +5,29 @@ import '../Model/token_model.dart';
 import '../Model/user_model.dart';
 
 class UserProvider extends GetConnect {
+  final String apiUrl = 'http://localhost:8000';
+
+  // if(kDebugMode) {
+  //   apiUrl = 'http://localhost:8000';
+  // } else {
+  //   apiUrl = 'https://aht-sarl.com/abc_api/public';
+  // }
+
   Future<Response<UserModel>> registerUser(body) =>
       post<UserModel>(
-        'http://localhost/mergroup_app_api/public/users', body,
+        '$apiUrl/users', body,
         decoder: (obj) => UserModel.fromJson(obj)
       );
 
   Future<Response<TokenModel>> login(body) =>
       post<TokenModel>(
-        'http://localhost/mergroup_app_api/public/login', body,
+        '$apiUrl/login', body,
           decoder: (obj) => TokenModel.fromJson(obj)
       );
 
   Future<Response<UserModel>> getCurrentUser(String? token) =>
       get<UserModel>(
-          'http://localhost/mergroup_app_api/public/me',
+          '$apiUrl/me',
           headers: {
             'Authorization': "Bearer $token"
           },

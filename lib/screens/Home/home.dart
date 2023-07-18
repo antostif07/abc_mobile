@@ -1,4 +1,6 @@
+import 'package:abc_mobile/controllers/HomeController.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:get/get.dart';
 
 import '../../theme/config.dart';
 import '../../widgets/FormationCard.dart';
@@ -6,30 +8,11 @@ import '../../widgets/sectionHeader.dart';
 import '../../widgets/topBar.dart';
 import '../../widgets/videoCard.dart';
 
-class Home extends StatefulWidget {
-  final onMenuTap;
-  Home({this.onMenuTap});
-  @override
-  _HomeState createState() => _HomeState();
-}
-
-class _HomeState extends State<Home> {
-  @override
-  Widget build(BuildContext context) {
-    return HomePage(
-      onMenuTap: widget.onMenuTap,
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  final onMenuTap;
-  HomePage({
+class Home extends GetView<HomeController> {
+  const Home({
     Key? key,
-    required this.onMenuTap,
   }) : super(key: key);
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return CupertinoPageScaffold(
@@ -84,13 +67,9 @@ class HomePage extends StatelessWidget {
               ],
             ),
           ),
-          Positioned(
+          const Positioned(
             top: 0,
-            child: TopBar(
-              controller: controller,
-              expanded: true,
-              onMenuTap: onMenuTap,
-            ),
+            child: TopBar(),
           )
         ],
       ),

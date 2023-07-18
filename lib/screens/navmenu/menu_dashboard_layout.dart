@@ -1,3 +1,6 @@
+import 'package:abc_mobile/controllers/HomeController.dart';
+import 'package:get/get.dart';
+
 import '../../../theme/config.dart' as config;
 import 'package:flutter/material.dart';
 
@@ -5,58 +8,11 @@ import '../Home/home.dart';
 import 'dashboard.dart';
 import 'menu.dart';
 
-final Color backgroundColor = Colors.lightBlue;
+const Color backgroundColor = Colors.lightBlue;
 
-class MenuDashboardLayout extends StatefulWidget {
-  @override
-  _MenuDashboardLayoutState createState() => _MenuDashboardLayoutState();
-}
-
-class _MenuDashboardLayoutState extends State<MenuDashboardLayout>
-    with SingleTickerProviderStateMixin {
-  bool isCollapsed = true;
-  double? screenWidth, screenHeight;
-  final Duration duration = const Duration(milliseconds: 200);
-  late AnimationController _controller;
-  Animation<double>? _scaleAnimation;
-  Animation<double>? _menuScaleAnimation;
-  Animation<Offset>? _slideAnimation;
-
-  @override
-  void initState() {
-    super.initState();
-    _controller = AnimationController(vsync: this, duration: duration);
-    _scaleAnimation = Tween<double>(begin: 1, end: 0.75).animate(_controller);
-    _menuScaleAnimation =
-        Tween<double>(begin: 0.5, end: 1).animate(_controller);
-    _slideAnimation = Tween<Offset>(begin: Offset(-1, 0), end: Offset(0, 0))
-        .animate(_controller);
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
-
-  void onMenuTap() {
-    setState(() {
-      if (isCollapsed)
-        _controller.forward();
-      else
-        _controller.reverse();
-
-      isCollapsed = !isCollapsed;
-    });
-  }
-
-  void onMenuItemClicked() {
-    setState(() {
-      _controller.reverse();
-    });
-
-    isCollapsed = !isCollapsed;
-  }
+class MenuDashboardLayout extends GetView<HomeController>{
+  MenuDashboardLayout({super.key});
+  double? screenHeight, screenWidth;
 
   @override
   Widget build(BuildContext context) {
@@ -76,17 +32,17 @@ class _MenuDashboardLayoutState extends State<MenuDashboardLayout>
             ),
           ),
           Menu(
-              onMenuTap: onMenuTap,
-              slideAnimation: _slideAnimation,
-              menuAnimation: _menuScaleAnimation,
-              onMenuItemClicked: onMenuItemClicked),
+              onMenuTap: controller.onMenuTap,
+              slideAnimation: controller.slideAnimation,
+              menuAnimation: controller.menuScaleAnimation,
+              onMenuItemClicked: controller.onMenuItemClicked),
           Dashboard(
-            duration: duration,
-            onMenuTap: onMenuTap,
-            scaleAnimation: _scaleAnimation,
-            isCollapsed: isCollapsed,
+            duration: controller.duration,
+            onMenuTap: controller.onMenuTap,
+            scaleAnimation: controller.scaleAnimation,
+            isCollapsed: controller.isCollapsed.value,
             screenWidth: screenWidth,
-            child: Home(onMenuTap: onMenuTap),
+            child: const Home(),
           ),
         ],
       ),

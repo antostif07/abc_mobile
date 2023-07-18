@@ -1,4 +1,8 @@
+import 'package:abc_mobile/controllers/HomeController.dart';
+import 'package:abc_mobile/utils/cache_manager.dart';
 import 'package:flutter/services.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../../theme/box_icons_icons.dart';
 import 'package:flutter/cupertino.dart';
@@ -6,30 +10,15 @@ import 'package:flutter/material.dart' as material;
 
 import 'card.dart';
 
-class TopBar extends StatefulWidget {
-  const TopBar({
-    Key? key,
-    required this.controller,
-    required this.expanded,
-    required this.onMenuTap,
-  }) : super(key: key);
+class TopBar extends GetView<HomeController> with CacheManager {
+  const TopBar({super.key});
 
-  final TextEditingController controller;
-  final bool expanded;
-  final onMenuTap;
-
-  @override
-  _TopBarState createState() => _TopBarState();
-}
-
-class _TopBarState extends State<TopBar> {
-  int tab = 0;
   @override
   Widget build(BuildContext context) {
     return Container(
       color: CupertinoColors.white,
       width: MediaQuery.of(context).size.width,
-      height: widget.expanded
+      height: controller.expanded.value
           ? MediaQuery.of(context).size.height * 0.35
           : MediaQuery.of(context).size.height * 0.19,
       child: Column(
@@ -42,14 +31,13 @@ class _TopBarState extends State<TopBar> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
                 Expanded(child: Image.asset('assets/images/logo.png',)),
-                const Expanded(flex: 3, child: Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
+                Expanded(flex: 3, child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Text(
-                    "Salut, David.",
-                    style: TextStyle(
-                        color: Color(0xFF343434),
+                    "Salut, ${(getConnectedUser().name.split(' ')).first}.",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF343434),
                         fontSize: 24,
-                        fontFamily: 'Red Hat Display',
                         fontWeight: material.FontWeight.w600),
                   ),
                 )),
@@ -65,7 +53,7 @@ class _TopBarState extends State<TopBar> {
                 Expanded(child: GestureDetector(
                   child: material.IconButton(
                     icon: const Icon(BoxIcons.bx_menu),
-                    onPressed: widget.onMenuTap,
+                    onPressed: controller.onMenuTap,
                   ),
                 ))
               ],
@@ -77,27 +65,27 @@ class _TopBarState extends State<TopBar> {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                   color: material.Colors.white,
-                  boxShadow: [
+                  boxShadow: const [
                     BoxShadow(
                       blurRadius: 25,
                       offset: Offset(0, 10),
                       color: Color(0x1A636363),
                     ),
                   ]),
-              padding: EdgeInsets.all(10),
-              style: TextStyle(
-                  color: Color(0xFF343434),
+              padding: const EdgeInsets.all(10),
+              style: GoogleFonts.poppins(
+                  color: const Color(0xFF343434),
                   fontSize: 18,
-                  fontFamily: 'Red Hat Display'),
+              ),
               enableInteractiveSelection: true,
-              controller: widget.controller,
+              controller: controller.searchController,
               expands: false,
               inputFormatters: [
                 FilteringTextInputFormatter.singleLineFormatter
               ],
               keyboardType: TextInputType.text,
-              suffix: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              suffix: const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 8.0),
                 child: Icon(
                   BoxIcons.bx_search,
                   color: Color(0xFFADADAD),
@@ -106,13 +94,13 @@ class _TopBarState extends State<TopBar> {
               textInputAction: TextInputAction.search,
               textCapitalization: TextCapitalization.words,
               placeholder: "Search",
-              placeholderStyle: TextStyle(
-                  color: Color(0xFFADADAD),
+              placeholderStyle: GoogleFonts.poppins(
+                  color: const Color(0xFFADADAD),
                   fontSize: 18,
-                  fontFamily: 'Red Hat Display'),
+              ),
             ),
           ),
-          widget.expanded
+          controller.expanded.value
               ? SizedBox(
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height * 0.165,
@@ -126,16 +114,16 @@ class _TopBarState extends State<TopBar> {
                           gradient: false,
                           button: true,
                           duration: 200,
-                          border: tab == index
+                          border: controller.tab.value == index
                               ? Border(
                                   bottom: BorderSide(
-                                      color: tab == 0
+                                      color: controller.tab.value == 0
                                           ? const Color(0xFF2828FF)
-                                          : tab == 1
+                                          : controller.tab.value == 1
                                               ? const Color(0xFFFF2E2E)
-                                              : tab == 2
+                                              : controller.tab.value == 2
                                                   ? const Color(0xFFFFD700)
-                                                  : Color(0xFF33FF33),
+                                                  : const Color(0xFF33FF33),
                                       width: 5),
                                 )
                               : null,
@@ -160,9 +148,7 @@ class _TopBarState extends State<TopBar> {
                             ),
                           ),
                           func: () {
-                            setState(() {
-                              tab = index;
-                            });
+                            controller.tab.value = index;
                           },
                         ),
                       );
