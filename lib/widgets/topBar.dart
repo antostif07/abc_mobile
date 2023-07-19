@@ -1,5 +1,4 @@
-import 'package:abc_mobile/controllers/HomeController.dart';
-import 'package:abc_mobile/utils/cache_manager.dart';
+import 'package:abc_mobile/controllers/home_controller.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -10,7 +9,7 @@ import 'package:flutter/material.dart' as material;
 
 import 'card.dart';
 
-class TopBar extends GetView<HomeController> with CacheManager {
+class TopBar extends GetView<HomeController> {
   const TopBar({super.key});
 
   @override
@@ -34,7 +33,7 @@ class TopBar extends GetView<HomeController> with CacheManager {
                 Expanded(flex: 3, child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 15),
                   child: Text(
-                    "Salut, ${(getConnectedUser().name.split(' ')).first}.",
+                    "Salut, ${(controller.getConnectedUser().name.split(' ')).first}.",
                     style: GoogleFonts.poppins(
                         color: const Color(0xFF343434),
                         fontSize: 24,

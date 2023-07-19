@@ -1,4 +1,4 @@
-import 'package:abc_mobile/controllers/HomeController.dart';
+import 'package:abc_mobile/controllers/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 

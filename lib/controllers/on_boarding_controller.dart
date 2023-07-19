@@ -114,7 +114,7 @@ class OnBoardingController extends GetxController {
                   ],
                 ),
                 onPressed: () {
-                  // Get.offNamed(Routes.dashboard);
+                  Get.offNamed(Routes.register);
                 }),
           )
         ],

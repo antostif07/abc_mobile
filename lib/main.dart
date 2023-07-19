@@ -3,6 +3,7 @@ import 'package:abc_mobile/bindings/global_binding.dart';
 import 'package:abc_mobile/controllers/authentication_controller.dart';
 import 'package:abc_mobile/routes.dart';
 import 'package:abc_mobile/screens/Auth/login.dart';
+import 'package:abc_mobile/screens/Auth/register.dart';
 import 'package:abc_mobile/screens/OnBoard/on_boarding.dart';
 import 'package:abc_mobile/screens/navmenu/menu_dashboard_layout.dart';
 import 'package:abc_mobile/screens/splash_screen.dart';
@@ -37,6 +38,7 @@ class MyApp extends StatelessWidget {
       getPages: [
         GetPage(name: Routes.onBoarding, page: () => const OnBoarding(), middlewares: [UnauthenticatedMiddleware()]),
         GetPage(name: Routes.login, page: () => const LoginScreen(), middlewares: [UnauthenticatedMiddleware()]),
+        GetPage(name: Routes.register, page: () => const RegisterScreen(), middlewares: [UnauthenticatedMiddleware()]),
         GetPage(name: Routes.dashboard, page: () => MenuDashboardLayout(),)
       ],
     );

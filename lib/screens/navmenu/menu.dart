@@ -1,23 +1,16 @@
-import 'package:abc_mobile/utils/cache_manager.dart';
+import 'package:abc_mobile/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../../theme/box_icons_icons.dart';
 
-class Menu extends StatelessWidget with CacheManager {
-  final Animation<Offset>? slideAnimation;
-  final Animation<double>? menuAnimation;
+class Menu extends GetView<HomeController> {
   final int? selectedIndex;
-  final Function onMenuItemClicked;
-  final onMenuTap;
 
   const Menu(
       {Key? key,
-      required this.onMenuTap,
-      this.slideAnimation,
-      this.menuAnimation,
-      this.selectedIndex,
-      required this.onMenuItemClicked})
+      this.selectedIndex,})
       : super(key: key);
 
   @override
@@ -56,13 +49,13 @@ class Menu extends StatelessWidget with CacheManager {
                   Icons.close,
                   color: Colors.white,
                 ),
-                onPressed: onMenuTap,
+                onPressed: controller.onMenuTap,
               ),
             )),
         SlideTransition(
-          position: slideAnimation!,
+          position: controller.slideAnimation!,
           child: ScaleTransition(
-            scale: menuAnimation!,
+            scale: controller.menuScaleAnimation!,
             child: Padding(
               padding: const EdgeInsets.only(left: 20.0, top: 30),
               child: Align(
@@ -85,7 +78,7 @@ class Menu extends StatelessWidget with CacheManager {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
                               Text(
-                                getConnectedUser().name,
+                                controller.getConnectedUser().name,
                                 maxLines: 1,
                                 overflow: TextOverflow.fade,
                                 style: GoogleFonts.poppins(
@@ -134,9 +127,9 @@ class Menu extends StatelessWidget with CacheManager {
                       ],
                     ),
                     const Spacer(flex: 1),
-                    const Row(
+                    Row(
                       children: <Widget>[
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_book_alt,
@@ -147,8 +140,7 @@ class Menu extends StatelessWidget with CacheManager {
                           "Tous les cours",
                           maxLines: 1,
                           overflow: TextOverflow.fade,
-                          style: TextStyle(
-                            fontFamily: "Red Hat Display",
+                          style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 18,
@@ -165,9 +157,9 @@ class Menu extends StatelessWidget with CacheManager {
                       ),
                     ),
                     const Spacer(flex: 1),
-                    const Row(
+                    Row(
                       children: <Widget>[
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_cog,
@@ -178,8 +170,7 @@ class Menu extends StatelessWidget with CacheManager {
                           "Paramètres",
                           maxLines: 1,
                           overflow: TextOverflow.fade,
-                          style: TextStyle(
-                            fontFamily: "Red Hat Display",
+                          style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 18,
@@ -188,9 +179,9 @@ class Menu extends StatelessWidget with CacheManager {
                       ],
                     ),
                     const Spacer(flex: 1),
-                    const Row(
+                    Row(
                       children: <Widget>[
-                        Padding(
+                        const Padding(
                           padding: EdgeInsets.only(right: 20.0),
                           child: Icon(
                             BoxIcons.bx_help_circle,
@@ -201,8 +192,7 @@ class Menu extends StatelessWidget with CacheManager {
                           "Informations",
                           maxLines: 1,
                           overflow: TextOverflow.fade,
-                          style: TextStyle(
-                            fontFamily: "Red Hat Display",
+                          style: GoogleFonts.poppins(
                             color: Colors.white,
                             fontWeight: FontWeight.normal,
                             fontSize: 18,

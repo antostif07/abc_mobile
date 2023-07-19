@@ -27,7 +27,7 @@ class AbcTextField extends material.StatelessWidget {
       decoration: material.InputDecoration(
         hintText: hintText,
         fillColor: HexColor("#f0f3f1"),
-        contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+        contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
         hintStyle: GoogleFonts.poppins(
           fontSize: 15,
           color: HexColor("#8d8d8d"),

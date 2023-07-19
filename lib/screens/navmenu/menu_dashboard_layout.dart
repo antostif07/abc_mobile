@@ -1,4 +1,4 @@
-import 'package:abc_mobile/controllers/HomeController.dart';
+import 'package:abc_mobile/controllers/home_controller.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/config.dart' as config;
@@ -31,16 +31,8 @@ class MenuDashboardLayout extends GetView<HomeController>{
               gradient: config.Colors().waves,
             ),
           ),
-          Menu(
-              onMenuTap: controller.onMenuTap,
-              slideAnimation: controller.slideAnimation,
-              menuAnimation: controller.menuScaleAnimation,
-              onMenuItemClicked: controller.onMenuItemClicked),
+          const Menu(),
           Dashboard(
-            duration: controller.duration,
-            onMenuTap: controller.onMenuTap,
-            scaleAnimation: controller.scaleAnimation,
-            isCollapsed: controller.isCollapsed.value,
             screenWidth: screenWidth,
             child: const Home(),
           ),

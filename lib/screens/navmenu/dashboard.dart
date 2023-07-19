@@ -1,33 +1,27 @@
+import 'package:abc_mobile/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
-class Dashboard extends StatelessWidget {
-  final bool? isCollapsed;
+class Dashboard extends GetView<HomeController> {
   final double? screenWidth;
-  final Duration? duration;
-  final Animation<double>? scaleAnimation;
-  final Function? onMenuTap;
   final Widget? child;
 
   const Dashboard(
       {Key? key,
-      this.isCollapsed,
       this.screenWidth,
-      this.duration,
-      this.scaleAnimation,
-      this.onMenuTap,
       this.child})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return AnimatedPositioned(
-      duration: duration!,
+    return Obx(() => AnimatedPositioned(
+      duration: controller.duration,
       top: 0,
       bottom: 0,
-      left: isCollapsed! ? 0 : 0.6 * screenWidth!,
-      right: isCollapsed! ? 0 : -0.6 * screenWidth!,
+      left: controller.isCollapsed.value ? 0 : 0.6 * screenWidth!,
+      right: controller.isCollapsed.value ? 0 : -0.6 * screenWidth!,
       child: ScaleTransition(
-        scale: scaleAnimation!,
+        scale: controller.scaleAnimation!,
         child: Container(
           decoration: const BoxDecoration(
             boxShadow: [
@@ -39,16 +33,16 @@ class Dashboard extends StatelessWidget {
             ],
           ),
           child: ClipRRect(
-            borderRadius: isCollapsed!
+            borderRadius: controller.isCollapsed.value
                 ? BorderRadius.zero
                 : const BorderRadius.all(Radius.circular(20)),
             child: Material(
-              animationDuration: duration!,
+              animationDuration: controller.duration,
               child: child,
             ),
           ),
         ),
       ),
-    );
+    ));
   }
 }

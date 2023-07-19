@@ -11,8 +11,10 @@ class UnauthenticatedMiddleware extends GetMiddleware {
   @override
   RouteSettings? redirect(String? route) {
     print(route);
-    return !authenticationManager.isLogged() && (route == Routes.login || route == Routes.onBoarding)
-        ? null : const RouteSettings(name: Routes.dashboard);
+    return !authenticationManager.isLogged() && (route == Routes.login || route == Routes.onBoarding ||
+      route == Routes.register
+    )
+        ? null : const RouteSettings(name: Routes.onBoarding);
   }
 
   @override

@@ -10,8 +10,8 @@ import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 
 import '../../widgets/textfield.dart';
 
-class LoginScreen extends GetView<AuthenticationController> {
-  const LoginScreen({super.key});
+class RegisterScreen extends GetView<AuthenticationController> {
+  const RegisterScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class LoginScreen extends GetView<AuthenticationController> {
             Align(
               alignment: Alignment.bottomCenter,
               child: Container(
-                height: 500,
+                height: 600,
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Colors.white,
@@ -49,7 +49,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Se connecter",
+                        "S'enregistrer",
                         style: GoogleFonts.poppins(
                           fontWeight: FontWeight.bold,
                           color: HexColor("#4f4f4f"),
@@ -59,10 +59,29 @@ class LoginScreen extends GetView<AuthenticationController> {
                         height: 20,
                       ),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 20),
+                        padding: const EdgeInsets.fromLTRB(15, 0, 0, 10),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            Text(
+                              "Votre nom",
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: HexColor("#8d8d8d"),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 10,
+                            ),
+                            AbcTextField(
+                              controller: controller.nameController,
+                              hintText: "Nom et Prenom",
+                              obscureText: false,
+                              prefixIcon: const Icon(Icons.people),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
                             Text(
                               "Numéro de téléphone",
                               style: GoogleFonts.poppins(
@@ -78,7 +97,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                                   },
                                 inputDecoration: InputDecoration(
                               fillColor: HexColor("#f0f3f1"),
-                              contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                              contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
                               hintStyle: GoogleFonts.poppins(
                                 fontSize: 15,
                                 color: HexColor("#8d8d8d"),
@@ -113,7 +132,7 @@ class LoginScreen extends GetView<AuthenticationController> {
                               ),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 5,
                             ),
                             Text(
                               "Mot de passe",
@@ -123,10 +142,29 @@ class LoginScreen extends GetView<AuthenticationController> {
                               ),
                             ),
                             const SizedBox(
-                              height: 10,
+                              height: 5,
                             ),
                             AbcTextField(
                               controller: controller.passwordController,
+                              hintText: "**************",
+                              obscureText: true,
+                              prefixIcon: const Icon(Icons.lock_outline),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            Text(
+                              "Confirmer Mot de passe",
+                              style: GoogleFonts.poppins(
+                                fontSize: 14,
+                                color: HexColor("#8d8d8d"),
+                              ),
+                            ),
+                            const SizedBox(
+                              height: 5,
+                            ),
+                            AbcTextField(
+                              controller: controller.confirmPasswordController,
                               hintText: "**************",
                               obscureText: true,
                               prefixIcon: const Icon(Icons.lock_outline),
@@ -136,12 +174,13 @@ class LoginScreen extends GetView<AuthenticationController> {
                             ),
                             Obx(() => ButtonWidget(
                               onPressed: (){
-                                controller.login({
+                                controller.register({
                                   "phone": controller.phoneInputText.value,
                                   "password": controller.passwordController.text,
+                                  "name": controller.nameController.text,
                                 });
                               },
-                              buttonText: controller.isLoading.value ? 'loading' : 'Se connecter' ,
+                              buttonText: controller.isLoading.value ? 'loading' : "S'enregistrer" ,
                             ),),
                             const SizedBox(
                               height: 12,
@@ -153,21 +192,21 @@ class LoginScreen extends GetView<AuthenticationController> {
                                   crossAxisAlignment: CrossAxisAlignment.center,
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
-                                    Text("Vous n'avez pas de compte?",
+                                    Text("Déjà enregistré?",
                                         textAlign: TextAlign.center,
                                         style: GoogleFonts.poppins(
                                           color: HexColor("#8d8d8d"),
                                         )),
                                     TextButton(
                                         child: Text(
-                                          "S'inscrire",
+                                          "Se connecter",
                                           style: GoogleFonts.poppins(
                                             fontSize: 14,
                                             color: HexColor("#44564a"),
                                           ),
                                         ),
                                         onPressed: () {
-                                          Get.toNamed(Routes.register);
+                                          Get.toNamed(Routes.login);
                                         }
                                     ),
                                   ],

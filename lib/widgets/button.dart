@@ -13,7 +13,7 @@ class ButtonWidget extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(20, 10, 10, 10),
+        padding: const EdgeInsets.fromLTRB(20, 0, 10, 0),
         child: Container(
           padding: const EdgeInsets.fromLTRB(0, 14, 0, 10),
           height: 55,
@@ -31,7 +31,7 @@ class ButtonWidget extends StatelessWidget {
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
               color: Colors.white,
-              fontSize: 18,
+              fontSize: 14,
               fontWeight: FontWeight.w600,
             ),
           ),
