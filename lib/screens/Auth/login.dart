@@ -77,28 +77,25 @@ class LoginScreen extends GetView<AuthenticationController> {
                                   controller.phoneInputText.value = number.phoneNumber!;
                                   },
                                 inputDecoration: InputDecoration(
-                              fillColor: HexColor("#f0f3f1"),
-                              contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
-                              hintStyle: GoogleFonts.poppins(
-                                fontSize: 15,
-                                color: HexColor("#8d8d8d"),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide.none,
-                              ),
-                              filled: true,
-                            ),
-                              onInputValidated: (bool value) {
-                                print(value);
-                              },
+                                  fillColor: HexColor("#f0f3f1"),
+                                  contentPadding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
+                                  hintStyle: GoogleFonts.poppins(
+                                    fontSize: 15,
+                                    color: HexColor("#8d8d8d"),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  filled: true,
+                                ),
                                 countries: const ['CD'],
-                              selectorConfig: const SelectorConfig(
-                                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                                showFlags: true,
-                              ),
-                              textFieldController: controller.telController,
-                              formatInput: true,
+                                selectorConfig: const SelectorConfig(
+                                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                                  showFlags: true,
+                                ),
+                                textFieldController: controller.telController,
+                                formatInput: true,
                                 keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true)
                             ),
                             Padding(
@@ -128,8 +125,11 @@ class LoginScreen extends GetView<AuthenticationController> {
                             AbcTextField(
                               controller: controller.passwordController,
                               hintText: "**************",
-                              obscureText: true,
-                              prefixIcon: const Icon(Icons.lock_outline),
+                              obscureText: controller.obscureText.value,
+                              onPressed: () {
+                                controller.toggleObscureText();
+                              },
+                              prefixIcon: controller.obscureText.value ? const Icon(Icons.lock_outline) : const Icon(Icons.lock_open_outlined),
                             ),
                             const SizedBox(
                               height: 20,

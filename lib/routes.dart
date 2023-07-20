@@ -8,4 +8,7 @@ class Routes {
 
   // Authenticated Routes
   static const String dashboard = '/dashboard';
+
+  static const String apiUrl = 'http://localhost:8000';
+  // static const String apiUrl = 'https://aht-sarl.com/abc_api/public';
 }

@@ -1,3 +1,4 @@
+import 'package:abc_mobile/Api/api_provider.dart';
 import 'package:abc_mobile/Middleware/unauthenticated_middleware.dart';
 import 'package:abc_mobile/bindings/global_binding.dart';
 import 'package:abc_mobile/controllers/authentication_controller.dart';
@@ -11,12 +12,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
-import 'Api/user_provider.dart';
-
 Future<void> main() async {
   await GetStorage.init();
-  final UserProvider userProvider = UserProvider();
-  Get.lazyPut(() => AuthenticationController(userProvider: userProvider));
+  final ApiProvider apiProvider = ApiProvider();
+  Get.lazyPut(() => AuthenticationController(apiProvider: apiProvider));
   runApp(const MyApp());
 }
 

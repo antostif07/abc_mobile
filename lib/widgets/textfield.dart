@@ -9,6 +9,7 @@ class AbcTextField extends material.StatelessWidget {
   final bool obscureText;
   final material.Icon prefixIcon;
   final Function()? onChanged;
+  final Function()? onPressed;
 
   const AbcTextField(
       {super.key,
@@ -16,7 +17,9 @@ class AbcTextField extends material.StatelessWidget {
         required this.hintText,
         required this.obscureText,
         required this.prefixIcon,
-        this.onChanged});
+        this.onChanged,
+        this.onPressed
+      });
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +39,10 @@ class AbcTextField extends material.StatelessWidget {
           borderRadius: BorderRadius.circular(30),
           borderSide: BorderSide.none,
         ),
-        prefixIcon: prefixIcon,
+        prefixIcon: material.IconButton(
+          icon: prefixIcon,
+          onPressed: onPressed,
+        ),
         prefixIconColor: HexColor("#4f4f4f"),
         filled: true,
       ),

@@ -1,3 +1,4 @@
+
 class MenuEntry {
   MenuEntry({
     required this.title,

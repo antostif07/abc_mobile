@@ -96,28 +96,24 @@ class RegisterScreen extends GetView<AuthenticationController> {
                                   controller.phoneInputText.value = number.phoneNumber!;
                                   },
                                 inputDecoration: InputDecoration(
-                              fillColor: HexColor("#f0f3f1"),
-                              contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
-                              hintStyle: GoogleFonts.poppins(
-                                fontSize: 15,
-                                color: HexColor("#8d8d8d"),
-                              ),
-                              border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(30),
-                                borderSide: BorderSide.none,
-                              ),
-                              filled: true,
-                            ),
-                              onInputValidated: (bool value) {
-                                print(value);
-                              },
+                                  fillColor: HexColor("#f0f3f1"),
+                                  contentPadding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
+                                  hintStyle: GoogleFonts.poppins(
+                                    fontSize: 15,
+                                    color: HexColor("#8d8d8d"),
+                                  ),
+                                  border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(30),
+                                    borderSide: BorderSide.none,
+                                  ),
+                                  filled: true,
+                                ),
                                 countries: const ['CD'],
-                              selectorConfig: const SelectorConfig(
-                                selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
-                                showFlags: true,
-                              ),
-                              textFieldController: controller.telController,
-                              formatInput: true,
+                                selectorConfig: const SelectorConfig(
+                                  selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                                  showFlags: true,
+                                ),
+                                textFieldController: controller.telController,
                                 keyboardType: const TextInputType.numberWithOptions(signed: true, decimal: true)
                             ),
                             Padding(
@@ -144,12 +140,15 @@ class RegisterScreen extends GetView<AuthenticationController> {
                             const SizedBox(
                               height: 5,
                             ),
-                            AbcTextField(
+                            Obx(() => AbcTextField(
                               controller: controller.passwordController,
                               hintText: "**************",
-                              obscureText: true,
-                              prefixIcon: const Icon(Icons.lock_outline),
-                            ),
+                              obscureText: controller.obscureText.value,
+                              prefixIcon: controller.obscureText.value ? const Icon(Icons.lock_outline) : const Icon(Icons.lock_open_outlined),
+                              onPressed: () {
+                                controller.toggleObscureText();
+                              },
+                            )),
                             const SizedBox(
                               height: 5,
                             ),
@@ -163,22 +162,27 @@ class RegisterScreen extends GetView<AuthenticationController> {
                             const SizedBox(
                               height: 5,
                             ),
-                            AbcTextField(
+                            Obx(() => AbcTextField(
                               controller: controller.confirmPasswordController,
                               hintText: "**************",
-                              obscureText: true,
-                              prefixIcon: const Icon(Icons.lock_outline),
-                            ),
+                              obscureText: controller.obscureText.value,
+                              prefixIcon: controller.obscureText.value ? const Icon(Icons.lock_outline) : const Icon(Icons.lock_open_outlined),
+                              onPressed: () {
+                                controller.toggleObscureText();
+                              },
+                            )),
                             const SizedBox(
                               height: 20,
                             ),
                             Obx(() => ButtonWidget(
                               onPressed: (){
-                                controller.register({
-                                  "phone": controller.phoneInputText.value,
-                                  "password": controller.passwordController.text,
-                                  "name": controller.nameController.text,
-                                });
+                                if(controller.checkRegisterValidations()){
+                                  controller.register({
+                                    "phone": controller.phoneInputText.value,
+                                    "password": controller.passwordController.text,
+                                    "name": controller.nameController.text,
+                                  });
+                                }
                               },
                               buttonText: controller.isLoading.value ? 'loading' : "S'enregistrer" ,
                             ),),
