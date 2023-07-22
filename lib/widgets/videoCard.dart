@@ -3,7 +3,7 @@ import '../../theme/config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as material;
 
-import '../screens/video.dart';
+import '../screens/course_screen.dart';
 import 'card.dart';
 
 class VideoCard extends material.StatelessWidget {

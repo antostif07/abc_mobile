@@ -1,71 +1,71 @@
-import '../../theme/box_icons_icons.dart';
-import '../../theme/config.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart' as material;
+import 'package:abc_mobile/Model/center_model.dart';
+import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 
-import '../screens/video.dart';
+import '../../theme/box_icons_icons.dart';
+import '../../theme/config.dart' as config;
+import 'package:flutter/material.dart';
+
+import '../screens/course_screen.dart';
 import 'card.dart';
 
-class FormationCard extends material.StatelessWidget {
+class FormationCard extends StatelessWidget {
   final bool long;
+  final CenterModel center;
+
   const FormationCard({
     required this.long,
-    material.Key? key,
+    required this.center,
+    Key? key,
   }) : super(key: key);
 
   @override
-  material.Widget build(material.BuildContext context) {
-    return material.Padding(
-      padding: const material.EdgeInsets.all(10.0),
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(10.0),
       child: CardWidget(
         gradient: false,
         button: true,
         width: long ? 360 : 180,
-        child: material.Column(
-          mainAxisAlignment: material.MainAxisAlignment.start,
-          children: <material.Widget>[
-            Expanded(child: material.Container(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            Expanded(child: Container(
               width: long ? 360 : 180,
               height: 87,
-              decoration: material.BoxDecoration(
-                image: material.DecorationImage(
-                    image: material.AssetImage('assets/images/logo.png'),
-                    fit: material.BoxFit.cover),
-                borderRadius: material.BorderRadius.only(
-                  topLeft: material.Radius.circular(10),
-                  topRight: material.Radius.circular(10),
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/logo.png'),
+                    fit: BoxFit.cover),
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(10),
+                  topRight: Radius.circular(10),
                 ),
               ),
-              child: material.Text(""),
+              child: const Text(""),
             )),
-            material.Padding(
-              padding: const material.EdgeInsets.only(top: 6.0),
-              child: material.GestureDetector(
-                child: material.Container(
-                  padding: material.EdgeInsets.fromLTRB(0, 14, 0, 14),
-                  decoration: material.BoxDecoration(gradient: Colors().waves),
-                  child: const material.Row(
-                    mainAxisAlignment: material.MainAxisAlignment.spaceEvenly,
-                    children: <material.Widget>[
-                      material.Icon(BoxIcons.bxs_coupon,
-                          color: material.Colors.white),
-                      material.Text(
-                        "Centre de formation",
-                        style: material.TextStyle(
-                            color: material.Colors.white,
-                            fontFamily: 'Red Hat Display',
-                            fontSize: 14),
+            Padding(
+              padding: const EdgeInsets.only(top: 6.0),
+              child: GestureDetector(
+                child: Container(
+                  padding: const EdgeInsets.fromLTRB(0, 14, 0, 14),
+                  decoration: BoxDecoration(gradient: config.Colors().waves),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: <Widget>[
+                      const Icon(BoxIcons.bxs_coupon, color: Colors.white),
+                      Text(
+                        center.name,
+                        style: GoogleFonts.poppins(
+                            color: Colors.white,
+                            fontSize: 14
+                        ),
                       )
                     ],
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => VideoPage(),
-                    ),
-                  );
+                  Get.to(VideoPage());
                 },
               ),
             ),

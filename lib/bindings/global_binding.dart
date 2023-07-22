@@ -11,6 +11,6 @@ class GlobalBinding extends Bindings {
   void dependencies() {
     Get.lazyPut(() => AuthenticationController(apiProvider: apiProvider));
     Get.put(OnBoardingController());
-    Get.lazyPut(() => HomeController());
+    Get.lazyPut(() => HomeController(apiProvider: apiProvider));
   }
 }

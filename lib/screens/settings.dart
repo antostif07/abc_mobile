@@ -8,8 +8,8 @@ import '../../widgets/sectionHeader.dart';
 import '../../widgets/topBar.dart';
 import '../../widgets/videoCard.dart';
 
-class Home extends GetView<HomeController> {
-  const Home({
+class Settings extends GetView<HomeController> {
+  const Settings({
     Key? key,
   }) : super(key: key);
 

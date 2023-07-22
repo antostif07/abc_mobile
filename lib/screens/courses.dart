@@ -1,23 +1,22 @@
+import 'package:abc_mobile/controllers/home_controller.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
 import '../../theme/config.dart' as config;
-import 'package:flutter/cupertino.dart';
-
-import '../widgets/sectionHeader.dart';
+import '../../widgets/sectionHeader.dart';
+import '../../widgets/videoCard.dart';
 import '../widgets/topBar.dart';
-import '../widgets/videoCard.dart';
 
-class VideosPage extends StatelessWidget {
-  VideosPage({
+class Courses extends GetView<HomeController> {
+  const Courses({
     Key? key,
-    required this.onMenuTap,
   }) : super(key: key);
-  final Function? onMenuTap;
 
-  TextEditingController controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
+    return Scaffold(
       backgroundColor: config.Colors().secondColor(1),
-      child: Stack(
+      body: Stack(
         alignment: Alignment.center,
         children: <Widget>[
           SafeArea(
@@ -25,7 +24,7 @@ class VideosPage extends StatelessWidget {
               slivers: <Widget>[
                 SliverFixedExtentList(
                     delegate: SliverChildListDelegate.fixed([Container()]),
-                    itemExtent: MediaQuery.of(context).size.height * 0.16),
+                    itemExtent: MediaQuery.of(context).size.height * 0.38),
                 SliverToBoxAdapter(
                   child: SectionHeader(
                     text: 'Best of Physics',

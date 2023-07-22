@@ -15,6 +15,6 @@ class ErrorModel {
     "message": message
   };
 
-  static List<ErrorModel> userFromJson(String str) =>
+  static List<ErrorModel> errorFromJson(String str) =>
       List<ErrorModel>.from(json.decode(str).map((x) => ErrorModel.fromJson(x)));
 }

@@ -1,4 +1,5 @@
 import 'package:abc_mobile/controllers/home_controller.dart';
+import 'package:abc_mobile/screens/courses.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/config.dart' as config;
@@ -13,6 +14,11 @@ const Color backgroundColor = Colors.lightBlue;
 class MenuDashboardLayout extends GetView<HomeController>{
   MenuDashboardLayout({super.key});
   double? screenHeight, screenWidth;
+
+  final screensList = [
+    const Home(),
+    const Courses(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -32,10 +38,10 @@ class MenuDashboardLayout extends GetView<HomeController>{
             ),
           ),
           const Menu(),
-          Dashboard(
+          Obx(() => Dashboard(
             screenWidth: screenWidth,
-            child: const Home(),
-          ),
+            child: screensList[controller.mainScreen.value],
+          )),
         ],
       ),
     );

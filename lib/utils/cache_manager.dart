@@ -12,10 +12,10 @@ mixin CacheManager {
   UserModel getConnectedUser() {
     final box = GetStorage();
     final connectedUser = box.read(CacheManagerKey.connectedUser.toString());
-    if (connectedUser.runtimeType is! UserModel) {
-      return UserModel.fromJson(connectedUser);
+    if (connectedUser is UserModel) {
+      return connectedUser;
     }
-    return connectedUser;
+    return UserModel.fromJson(connectedUser);
   }
 
   Future<void> removeConnectedUser() {

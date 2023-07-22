@@ -27,17 +27,17 @@ class AuthenticationController extends GetxController with CacheManager {
       await apiProvider.login(body).then((response) {
         if (response.statusCode == 200) {
           try {
-            apiProvider.getCurrentUser(response.body?.token).then((value) {
+            apiProvider.getCurrentUser(response.body?.token).then((value) async {
               if (value.statusCode == 200) {
                 resetForm();
                 saveToken(response.body?.token);
-                saveConnectedUser(value.body);
+                await saveConnectedUser(value.body);
                 setIsLogged(true);
                 Get.offAllNamed(Routes.dashboard);
               }
             });
           } finally {
-
+            isLoading(false);
           }
 
         } else {

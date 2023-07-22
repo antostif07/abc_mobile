@@ -1,4 +1,5 @@
 import 'package:abc_mobile/controllers/home_controller.dart';
+import 'package:abc_mobile/widgets/menu_item.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -105,50 +106,22 @@ class Menu extends GetView<HomeController> {
                     const Spacer(
                       flex: 2,
                     ),
-                    Row(
-                      children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            BoxIcons.bx_home_circle,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "Accueil",
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(flex: 1),
-                    Row(
-                      children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            BoxIcons.bx_book_alt,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "Tous les cours",
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(flex: 1),
+                    Obx(() => AppMenuItem(
+                      icon: BoxIcons.bx_home_circle, title: "Accueil",
+                      selected: controller.mainScreen.value == 0,
+                      onClicked: () {
+                        controller.mainScreen.value = 0;
+                        controller.onMenuItemClicked();
+                      },
+                    )),
+                    Obx(() => AppMenuItem(
+                      icon: BoxIcons.bx_book_alt, title: "Tous les cours",
+                      selected: controller.mainScreen.value == 1,
+                      onClicked: () {
+                        controller.mainScreen.value = 1;
+                        controller.onMenuItemClicked();
+                      },
+                    )),
                     SizedBox(
                       height: 1,
                       width: 200,
@@ -157,49 +130,8 @@ class Menu extends GetView<HomeController> {
                       ),
                     ),
                     const Spacer(flex: 1),
-                    Row(
-                      children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            BoxIcons.bx_cog,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "Paramètres",
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
-                    const Spacer(flex: 1),
-                    Row(
-                      children: <Widget>[
-                        const Padding(
-                          padding: EdgeInsets.only(right: 20.0),
-                          child: Icon(
-                            BoxIcons.bx_help_circle,
-                            color: Colors.white,
-                          ),
-                        ),
-                        Text(
-                          "Informations",
-                          maxLines: 1,
-                          overflow: TextOverflow.fade,
-                          style: GoogleFonts.poppins(
-                            color: Colors.white,
-                            fontWeight: FontWeight.normal,
-                            fontSize: 18,
-                          ),
-                        ),
-                      ],
-                    ),
+                    const AppMenuItem(icon: BoxIcons.bx_cog, title: "Paramètres",),
+                    const AppMenuItem(icon: BoxIcons.bx_help_circle, title: "Informations",),
                     const Spacer(flex: 6),
                   ],
                 ),

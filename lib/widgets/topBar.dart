@@ -17,9 +17,9 @@ class TopBar extends GetView<HomeController> {
     return Container(
       color: CupertinoColors.white,
       width: MediaQuery.of(context).size.width,
-      height: controller.expanded.value
-          ? MediaQuery.of(context).size.height * 0.35
-          : MediaQuery.of(context).size.height * 0.19,
+      // height: controller.expanded.value
+      //     ? MediaQuery.of(context).size.height * 0.35
+      //     : MediaQuery.of(context).size.height * 0.19,
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
@@ -29,26 +29,26 @@ class TopBar extends GetView<HomeController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
-                Expanded(child: Image.asset('assets/images/logo.png',)),
-                Expanded(flex: 3, child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
-                  child: Text(
-                    "Salut, ${(controller.getConnectedUser().name.split(' ')).first}.",
-                    style: GoogleFonts.poppins(
-                        color: const Color(0xFF343434),
-                        fontSize: 24,
-                        fontWeight: material.FontWeight.w600),
-                  ),
-                )),
                 Expanded(child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 15),
+                  padding: const EdgeInsets.only(left: 8),
                   child: GestureDetector(
                     child: const material.CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/user.png'),
+                      backgroundImage: AssetImage('assets/images/user.png',),
+
                     ),
                     onTap: () {},
                   ),
                 ),),
+                Expanded(flex: 3, child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 1),
+                  child: Text(
+                    "Salut, ${(controller.getConnectedUser().name.split(' ')).first}.",
+                    style: GoogleFonts.poppins(
+                        color: const Color(0xFF343434),
+                        fontSize: 18,
+                        fontWeight: material.FontWeight.w600),
+                  ),
+                )),
                 Expanded(child: GestureDetector(
                   child: material.IconButton(
                     icon: const Icon(BoxIcons.bx_menu),
