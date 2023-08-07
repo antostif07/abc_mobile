@@ -3,7 +3,7 @@ import '../../theme/config.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as material;
 
-import '../screens/course_screen.dart';
+import '../screens/Courses/course_screen.dart';
 import 'card.dart';
 
 class VideoCard extends material.StatelessWidget {
@@ -97,12 +97,13 @@ class VideoCard extends material.StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    CupertinoPageRoute(
-                      builder: (context) => VideoPage(),
-                    ),
-                  );
+                  return;
+                  // Navigator.push(
+                  //   context,
+                  //   CupertinoPageRoute(
+                  //     builder: (context) => VideoPage(),
+                  //   ),
+                  // );
                 },
               ),
             ),

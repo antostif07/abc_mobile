@@ -6,7 +6,7 @@ import '../../theme/box_icons_icons.dart';
 import '../../theme/config.dart' as config;
 import 'package:flutter/material.dart';
 
-import '../screens/course_screen.dart';
+import '../screens/Courses/course_screen.dart';
 import 'card.dart';
 
 class FormationCard extends StatelessWidget {
@@ -65,7 +65,7 @@ class FormationCard extends StatelessWidget {
                   ),
                 ),
                 onTap: () {
-                  Get.to(VideoPage());
+                  return;
                 },
               ),
             ),

@@ -5,6 +5,7 @@ import 'package:abc_mobile/controllers/authentication_controller.dart';
 import 'package:abc_mobile/routes.dart';
 import 'package:abc_mobile/screens/Auth/login.dart';
 import 'package:abc_mobile/screens/Auth/register.dart';
+import 'package:abc_mobile/screens/Courses/course_screen.dart';
 import 'package:abc_mobile/screens/OnBoard/on_boarding.dart';
 import 'package:abc_mobile/screens/navmenu/menu_dashboard_layout.dart';
 import 'package:abc_mobile/screens/splash_screen.dart';
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       title: 'ABC Training School',
       initialBinding: GlobalBinding(),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellowAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
       ),
       home: const SplashScreen(),
@@ -38,7 +39,8 @@ class MyApp extends StatelessWidget {
         GetPage(name: Routes.onBoarding, page: () => const OnBoarding(), middlewares: [UnauthenticatedMiddleware()]),
         GetPage(name: Routes.login, page: () => const LoginScreen(), middlewares: [UnauthenticatedMiddleware()]),
         GetPage(name: Routes.register, page: () => const RegisterScreen(), middlewares: [UnauthenticatedMiddleware()]),
-        GetPage(name: Routes.dashboard, page: () => MenuDashboardLayout(),)
+        GetPage(name: Routes.dashboard, page: () => MenuDashboardLayout(),),
+        GetPage(name: Routes.courseScreen, page: () => const CourseScreen())
       ],
     );
   }

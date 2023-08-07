@@ -7,8 +7,6 @@ import '../../theme/box_icons_icons.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart' as material;
 
-import 'card.dart';
-
 class TopBar extends GetView<HomeController> {
   const TopBar({super.key});
 
@@ -34,7 +32,6 @@ class TopBar extends GetView<HomeController> {
                   child: GestureDetector(
                     child: const material.CircleAvatar(
                       backgroundImage: AssetImage('assets/images/user.png',),
-
                     ),
                     onTap: () {},
                   ),
@@ -59,7 +56,7 @@ class TopBar extends GetView<HomeController> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.all(15.0),
+            padding: const EdgeInsets.all(16.0),
             child: CupertinoTextField(
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
@@ -99,62 +96,6 @@ class TopBar extends GetView<HomeController> {
               ),
             ),
           ),
-          controller.expanded.value
-              ? SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height * 0.165,
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 4,
-                    itemBuilder: (context, index) {
-                      return Padding(
-                        padding: const EdgeInsets.fromLTRB(15, 15, 10, 30),
-                        child: CardWidget(
-                          gradient: false,
-                          button: true,
-                          duration: 200,
-                          border: controller.tab.value == index
-                              ? Border(
-                                  bottom: BorderSide(
-                                      color: controller.tab.value == 0
-                                          ? const Color(0xFF2828FF)
-                                          : controller.tab.value == 1
-                                              ? const Color(0xFFFF2E2E)
-                                              : controller.tab.value == 2
-                                                  ? const Color(0xFFFFD700)
-                                                  : const Color(0xFF33FF33),
-                                      width: 5),
-                                )
-                              : null,
-                          child: Center(
-                            child: Column(
-                              mainAxisAlignment:
-                                  material.MainAxisAlignment.spaceEvenly,
-                              children: <Widget>[
-                                Icon(index == 0
-                                    ? BoxIcons.bx_shape_circle
-                                    : index == 1
-                                        ? BoxIcons.bx_shape_polygon
-                                        : index == 2
-                                            ? BoxIcons.bx_shape_square
-                                            : BoxIcons.bx_shape_triangle),
-                                Text(index == 0
-                                    ? "English"
-                                    : index == 1
-                                        ? "Informatique"
-                                        : index == 2 ? "Français" : "Espagnol", overflow: TextOverflow.fade,)
-                              ],
-                            ),
-                          ),
-                          func: () {
-                            controller.tab.value = index;
-                          },
-                        ),
-                      );
-                    },
-                  ),
-                )
-              : Container(),
         ],
       ),
     );

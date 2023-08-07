@@ -1,5 +1,5 @@
 import 'package:abc_mobile/controllers/home_controller.dart';
-import 'package:abc_mobile/screens/courses.dart';
+import 'package:abc_mobile/screens/Courses/courses.dart';
 import 'package:get/get.dart';
 
 import '../../../theme/config.dart' as config;
@@ -17,7 +17,7 @@ class MenuDashboardLayout extends GetView<HomeController>{
 
   final screensList = [
     const Home(),
-    const Courses(),
+    Courses(),
   ];
 
   @override
